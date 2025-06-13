@@ -1,5 +1,4 @@
-
-let jugadores = 1, turnoActual = 1, scores = {}, carta1 = null, lock = false, tiempo = 40, timer;
+let jugadores = 1, turnoActual = 1, scores = {}, carta1 = null, lock = false, tiempo = 30, timer;
 
 function obtenerCartas(nivel) {
   if (nivel === 'nacional') return { ...presidentesNacionales };
@@ -13,7 +12,7 @@ function startGame() {
   const nivel = document.getElementById('level').value;
   jugadores = parseInt(document.getElementById('players').value);
   turnoActual = 1;
-  tiempo = 40;
+  tiempo = 30;
   scores = {};
   const data = obtenerCartas(nivel);
   const nombres = Object.keys(data);
@@ -66,12 +65,12 @@ function voltearCarta(card) {
 
 function siguienteTurno() {
   turnoActual = (turnoActual % jugadores) + 1;
-  tiempo = Math.max(10, tiempo - 5);
+  tiempo = 30;
   actualizarEstado();
 }
 
 function actualizarEstado() {
-  document.getElementById('status').innerText = `Turno del Jugador ${turnoActual} | Tiempo: ${tiempo}s`;
+  document.getElementById('status').innerText = `Turno del Jugador ${turnoActual} | Tiempo restante: ${tiempo}s`;
 }
 
 function iniciarTemporizador() {
@@ -95,3 +94,4 @@ function endGame() {
   document.getElementById('gameScreen').classList.remove('active');
   document.getElementById('startScreen').classList.add('active');
 }
+
